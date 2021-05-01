@@ -22,10 +22,10 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
-	  paths:
-            - node_modules
+      #- restore_cache:
+      #    key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      #    paths:
+      #      - node_modules
 
       - save_cache:
           key: node-v1-{{ checksum "package.json" }}-{{ arch }}
