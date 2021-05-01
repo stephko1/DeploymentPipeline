@@ -15,15 +15,7 @@ jobs:
 
     steps:
       - checkout
-      - restore_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
-          paths:
-            - node_modules
 
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
-          paths:
-            - node_modules
   android-build-and-test:
     working_directory: ~/DeploymentPipeline/android
     docker:
@@ -33,15 +25,7 @@ jobs:
       
       - attach_workspace:
           at: ~/DeploymentPipeline
-      - restore_cache:
-          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
-      - run: bundle update
-
-      - save_cache:
-          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
-          paths:
-            - vendor/bundle
-
+      
       - run:
           name: fastlane tests
           command: |
