@@ -33,7 +33,8 @@ jobs:
           path: ~/DeploymentPipeline
       - attach_workspace:
           at: ~/DeploymentPipeline
-          
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
       - run: bundle update
 
       - save_cache:
