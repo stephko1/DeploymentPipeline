@@ -24,7 +24,7 @@ jobs:
       - checkout
       
       - attach_workspace:
-          at: ~/DeploymentPipeline
+          at: ~/DeploymentPipeline/android
       
       - run:
           name: fastlane tests
