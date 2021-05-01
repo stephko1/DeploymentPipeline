@@ -15,7 +15,7 @@ workflows:
             - init
 jobs:
   init:
-    working_directory: ~/demo-react-native
+    working_directory: ~/DeploymentPipeline
     docker:
       - image: cimg/node:12.16
 
@@ -31,19 +31,19 @@ jobs:
             - node_modules
 
       - persist_to_workspace:
-          root: ~/demo-react-native
+          root: ~/DeploymentPipeline
           paths:
             - node_modules
 
   android-build-and-test:
-    working_directory: ~/demo-react-native/android
+    working_directory: ~/DeploymentPipeline/android
     docker:
       - image: circleci/android:api-29-node
     steps:
       - checkout:
-          path: ~/demo-react-native
+          path: ~/DeploymentPipeline
       - attach_workspace:
-          at: ~/demo-react-native
+          at: ~/DeploymentPipeline
       - restore_cache:
           key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
 
@@ -70,7 +70,7 @@ jobs:
           path: test-results
           
   macos-build-and-test:
-    working_directory: ~/demo-react-native
+    working_directory: ~/DeploymentPipeline
     macos:
       xcode: 11.3.0
     environment:
