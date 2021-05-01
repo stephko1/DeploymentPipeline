@@ -1,0 +1,52 @@
+version: 2.1
+
+workflows:
+  main:
+    jobs:
+      - init
+      - android-build-and-test:
+          requires: 
+            - init
+jobs:
+  init:
+    working_directory: ~/DeploymentPipeline
+    docker:
+      - image: cimg/node:12.16
+
+    steps:
+      - checkout
+
+  android-build-and-test:
+    working_directory: ~/DeploymentPipeline/android
+    docker:
+      - image: circleci/android:api-29-node
+    steps:
+      - checkout:
+          path: ~/DeploymentPipeline
+      - attach_workspace:
+          at: ~/DeploymentPipeline
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+
+      - run: bundle update
+
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: fastlane tests
+          command: |
+            chmod +x ./gradlew
+            bundle exec fastlane test
+      - run:
+          name: fastlane build
+          command: fastlane build
+            
+      - store_test_results:
+          path: test-results
+
+      - store_artifacts:
+          path: test-results
+          
