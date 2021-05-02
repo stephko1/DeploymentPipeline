@@ -7,7 +7,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
+import org.junit.Rule;
+import org.junit.After;
+import com.microsoft.appcenter.espresso.Factory;
+import com.microsoft.appcenter.espresso.ReportHelper;
 import static org.junit.Assert.*;
 
 /**
@@ -22,5 +25,11 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.android", appContext.getPackageName());
+    }
+    @Rule
+    public ReportHelper reportHelper = Factory.getReportHelper();
+    @After
+    public void TearDown(){
+        reportHelper.label("Stopping App");
     }
 }
