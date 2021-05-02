@@ -53,7 +53,8 @@ platform :android do
   
   desc "Submit a new Alpha Build"
   lane :alpha do
-    upload_to_play_store(track: 'alpha')
+	build_number=number_of_commits()
+    upload_to_play_store(track: 'alpha', version_code: build_number)
   end
 
   desc "Submit a new Beta Build"
