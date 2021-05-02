@@ -5,6 +5,9 @@ plugins {
 def computeVersionCode() {	
     return Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
 }
+def computeVersionName() {	
+    return String.format('%d.%d', computeVersionCode().toString(), "0")
+}
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -14,7 +17,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 30
         versionCode computeVersionCode()
-        versionName "6.0"
+        versionName computeVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

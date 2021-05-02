@@ -47,8 +47,7 @@ platform :android do
 		skip_upload_changelogs:true,
 		skip_upload_images:true,
 		skip_upload_screenshots:true,
-		apk:'./app/build/outputs/apk/release/app-release.apk',
-		rollout: $BUILD_NUMBER
+		apk:'./app/build/outputs/apk/release/app-release.apk'
 		)
   end
   
@@ -58,7 +57,8 @@ platform :android do
         upload_to_play_store(
 		track: 'internal',
 		skip_upload_apk: true,	
-		track_promote_to: 'alpha'
+		track_promote_to: 'alpha',
+		version_code: $BUILD_NUMBER
 		)
   end
 
