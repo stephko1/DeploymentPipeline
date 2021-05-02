@@ -23,10 +23,8 @@ platform :android do
   
   desc 'Build the Android application.'
    lane :build do
-    gradle(task: 'clean')
     build_number=number_of_commits()
     gradle(task: 'assemble', build_type: 'Release', properties: {"VERSION_CODE" => build_number})
-    gradle(task: "sonarqube")
    end
   
   desc "Submit a new Beta Build to Crashlytics Beta"
