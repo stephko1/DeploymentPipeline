@@ -38,8 +38,8 @@ platform :android do
         })
    end
 
-  desc "Submit a new Alpha Build"
-  lane :alpha do
+  desc "Submit a new Internal Build"
+  lane :internal do
     upload_to_play_store(
 		track: 'internal',
 		package_name: 'com.meks.deploymentpipeline',
@@ -49,6 +49,11 @@ platform :android do
 		skip_upload_images:true,
 		skip_upload_screenshots:true
 		)
+  end
+  
+  desc "Submit a new Alpha Build"
+  lane :alpha do
+    upload_to_play_store(track: 'alpha')
   end
 
   desc "Submit a new Beta Build"
