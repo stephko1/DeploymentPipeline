@@ -1,4 +1,4 @@
-package com.example.android;
+package com.example.deploymentpipeline;
 
 import org.junit.Test;
 

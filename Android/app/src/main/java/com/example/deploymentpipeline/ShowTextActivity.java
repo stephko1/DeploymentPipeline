@@ -1,4 +1,4 @@
-package com.example.android;
+package com.example.deploymentpipeline;
 
 import android.app.Activity;
 import android.content.Context;

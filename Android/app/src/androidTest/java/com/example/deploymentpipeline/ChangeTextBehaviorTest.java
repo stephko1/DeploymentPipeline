@@ -1,17 +1,11 @@
-package com.example.android;
-
-import android.content.Context;
+package com.example.deploymentpipeline;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.Rule;
-import org.junit.After;
-import com.microsoft.appcenter.espresso.Factory;
-import com.microsoft.appcenter.espresso.ReportHelper;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -20,7 +14,6 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -49,7 +42,7 @@ public class ChangeTextBehaviorTest {
         // Check that the text was changed.
         onView(withId(R.id.textToBeChanged)).check(matches(withText(STRING_TO_BE_TYPED)));
     }
-
+/*
     @Test
     public void changeText_newActivity() {
         // Type text and then press the button.
@@ -59,5 +52,5 @@ public class ChangeTextBehaviorTest {
 
         // This view is in a different Activity, no need to tell Espresso.
         onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)));
-    }
+    }*/
 }

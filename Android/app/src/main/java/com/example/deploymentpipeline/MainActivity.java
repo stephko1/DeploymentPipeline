@@ -1,4 +1,4 @@
-package com.example.android;
+package com.example.deploymentpipeline;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.microsoft.appcenter.AppCenter;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mTextView.setText(text);
         } else if (view.getId() == activityChangeTextBtnId) {
             // Second button's interaction: start an activity and send a message to it.
-            Intent intent = com.example.android.ShowTextActivity
+            Intent intent = com.example.deploymentpipeline.ShowTextActivity
                     .newStartIntent(this, text);
             startActivity(intent);
         }
