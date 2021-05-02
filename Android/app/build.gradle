@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
 }
-ext.versionMajor = System.env.BUILD_NUMBER ?: 0
+ext.versionMajor = System.env.BUILD_NUMBER ?: 1
 def computeVersionCode() {
     return Integer.valueOf(versionMajor)
 }
