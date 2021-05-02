@@ -1,7 +1,22 @@
+
+
 plugins {
     id 'com.android.application'
 }
 
+def computeVersionName() {
+    // Basic <major>.<minor> version name
+    return String.format('%d.%d', versionMajor, versionMinor)
+}
+
+// Will return 120042 for Jenkins build #42
+def computeVersionCode() {
+    // Major + minor + Jenkins build number (where available)
+    return (versionMajor * 100000) + (versionMinor * 10000) + Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+}
+// Used to set the package version name and version code
+ext.versionMajor = 1
+ext.versionMinor = 2
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -10,8 +25,8 @@ android {
         applicationId "com.meks.deploymentpipeline"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode computeVersionCode()
+        versionName computeVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
