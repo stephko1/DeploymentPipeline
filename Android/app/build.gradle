@@ -6,8 +6,7 @@ def computeVersionCode() {
     return Integer.valueOf(versionMajor)
 }
 def computeVersionName() {
-	versionMajor = versionMajor.toString()
-    return String.format('%d.%d', versionMajor, "0")
+    return String.format('%d.%d', versionMajor, 0)
 }
 android {
     compileSdkVersion 30
