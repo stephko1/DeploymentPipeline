@@ -40,7 +40,6 @@ platform :android do
 
   desc "Submit a new Internal Build"
   lane :internal do
-	build_number=number_of_commits()
     upload_to_play_store(
 		track: 'internal',
 		package_name: 'com.meks.deploymentpipeline',
@@ -49,8 +48,7 @@ platform :android do
 		skip_upload_changelogs:true,
 		skip_upload_images:true,
 		skip_upload_screenshots:true,
-		apk:'./app/build/outputs/apk/release/app-release.apk',
-		rollout: build_number
+		apk:'./app/build/outputs/apk/release/app-release.apk'
 		)
   end
   
