@@ -2,7 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
-
+def computeVersionCode() {	
+    return Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+}
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -11,8 +13,8 @@ android {
         applicationId "com.meks.deploymentpipeline"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 5
-        versionName "5.0"
+        versionCode computeVersionCode()
+        versionName "6.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
