@@ -40,11 +40,11 @@ platform :android do
 
   desc "Submit a new Alpha Build"
   lane :alpha do
-    upload_to_play_store(track: 'alpha')
+    supply(track: 'internal')
   end
 
   desc "Submit a new Beta Build"
   lane :beta do
-    upload_to_play_store(track: 'beta')
+    upload_to_play_store(track: 'alpha')
   end
 end
