@@ -40,7 +40,15 @@ platform :android do
 
   desc "Submit a new Alpha Build"
   lane :alpha do
-    upload_to_play_store(track: 'internal')
+    upload_to_play_store(
+		track: 'internal',
+		package_name: 'com.meks.deploymentpipeline',
+		skip_upload_aab: true,
+		skip_upload_metadata:true,
+		skip_upload_changelogs:true,
+		skip_upload_images:true,
+		skip_upload_screenshots:true
+		)
   end
 
   desc "Submit a new Beta Build"
