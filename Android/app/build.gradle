@@ -1,12 +1,12 @@
 plugins {
     id 'com.android.application'
 }
-
-def computeVersionCode() {	
-    return Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+ext.versionMajor = System.env.BUILD_NUMBER ?: 0
+def computeVersionCode() {
+    return Integer.valueOf(versionMajor)
 }
-def computeVersionName() {	
-    return String.format('%d.%d', computeVersionCode().toString(), "0")
+def computeVersionName() {
+    return String.format('%d.%d', versionMajor, "0")
 }
 android {
     compileSdkVersion 30
