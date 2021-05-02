@@ -13,7 +13,7 @@ public class ShowTextActivity extends Activity {
 
     // The name of the extra data sent through an {@link Intent}.
     public final static String KEY_EXTRA_MESSAGE =
-            "com.example.android.testing.espresso.basicsample.MESSAGE";
+            "com.example.android.testing.espresso.basically.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,11 @@ public class ShowTextActivity extends Activity {
         setContentView(R.layout.activity_show_text);
 
         // Get the message from the Intent.
+        String message = "";
         Intent intent = getIntent();
-        String message = Objects.toString(intent.getStringExtra(KEY_EXTRA_MESSAGE));
+        if (intent.getStringExtra(KEY_EXTRA_MESSAGE) != null) {
+            message = Objects.toString(intent.getStringExtra(KEY_EXTRA_MESSAGE));
+        }
 
         // Show message.
         ((TextView)findViewById(R.id.show_text_view)).setText(message);
