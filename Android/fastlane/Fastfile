@@ -24,9 +24,18 @@ platform :android do
   desc 'Build the Android application.'
    lane :build do
     build_number=number_of_commits()
-    gradle(task: 'assemble', build_type: 'Release', properties: {"VERSION_CODE" => build_number})
+    gradle(
+      task: 'assemble', 
+      build_type: 'Release', 
+      properties: {
+        "VERSION_CODE" => build_number,
+        "android.injected.signing.store.file" => "keystore.jks",
+        "android.injected.signing.store.password" => "X7CKBHA5wChxgWA0mwnz",
+        "android.injected.signing.key.alias" => "key0",
+        "android.injected.signing.key.password" => "GzT4Q1rtbWiJAgKfDOIE"
+        })
    end
-  
+
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     gradle(task: "clean assembleRelease")
