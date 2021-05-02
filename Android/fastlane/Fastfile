@@ -56,14 +56,9 @@ platform :android do
   lane :alpha do
 	build_number=number_of_commits()
         upload_to_play_store(
-		track: 'alpha',
-		skip_upload_aab: true,
-		skip_upload_metadata:true,
-		skip_upload_changelogs:true,
-		skip_upload_images:true,
-		skip_upload_screenshots:true,
-		apk:'./app/build/outputs/apk/release/app-release.apk',
-		rollout: $BUILD_NUMBER
+		track: 'internal',
+		skip_upload_apk: true,	
+		track_promote_to: 'alpha'
 		)
   end
 
