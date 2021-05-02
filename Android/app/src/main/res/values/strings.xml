@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android</string>
+    <string name="app_name">DeploymentPipeline</string>
     <string name="hello_world">Hello Espresso!</string>
     <string name="change_text">Change text</string>
     <string name="type_something">type something…</string>

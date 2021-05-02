@@ -1,9 +1,8 @@
-package com.example.deploymentpipeline;
+package com.meks.deploymentpipeline;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.microsoft.appcenter.AppCenter;
-import com.microsoft.appcenter.analytics.Analytics;
-import com.microsoft.appcenter.crashes.Crashes;
+
+import android.app.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppCenter.start(getApplication(), "8cb0f829-9287-4f40-8e90-5f14ab8b9487",
-                Analytics.class, Crashes.class);
 
 
         // Set the listeners for the buttons.
@@ -45,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mTextView.setText(text);
         } else if (view.getId() == activityChangeTextBtnId) {
             // Second button's interaction: start an activity and send a message to it.
-            Intent intent = com.example.deploymentpipeline.ShowTextActivity
+            Intent intent = ShowTextActivity
                     .newStartIntent(this, text);
             startActivity(intent);
         }

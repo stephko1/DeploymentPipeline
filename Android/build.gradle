@@ -11,17 +11,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-plugins {
-    id "org.sonarqube" version "3.1.1"
-}
 
-sonarqube {
-    properties {
-        property "sonar.projectKey", "stephko1_Pipeline"
-        property "sonar.organization", "stephko1"
-        property "sonar.host.url", "https://sonarcloud.io"
-    }
-}
 allprojects {
     repositories {
         google()

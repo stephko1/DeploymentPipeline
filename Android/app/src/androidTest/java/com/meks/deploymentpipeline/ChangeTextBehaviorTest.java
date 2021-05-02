@@ -1,11 +1,21 @@
-package com.example.deploymentpipeline;
+package com.meks.deploymentpipeline;
+
+import android.app.Activity;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.meks.deploymentpipeline.MainActivity;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.Rule;
+
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
