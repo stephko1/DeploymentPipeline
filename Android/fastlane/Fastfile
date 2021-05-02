@@ -42,7 +42,6 @@ platform :android do
   lane :internal do
     upload_to_play_store(
 		track: 'internal',
-		package_name: 'com.meks.deploymentpipeline',
 		skip_upload_aab: true,
 		skip_upload_metadata:true,
 		skip_upload_changelogs:true,
@@ -56,7 +55,16 @@ platform :android do
   desc "Submit a new Alpha Build"
   lane :alpha do
 	build_number=number_of_commits()
-    upload_to_play_store(track: 'Alpha', skip_upload_metadata: true, skip_upload_changelogs: true, rollout: $BUILD_NUMBER)
+        upload_to_play_store(
+		track: 'alpha',
+		skip_upload_aab: true,
+		skip_upload_metadata:true,
+		skip_upload_changelogs:true,
+		skip_upload_images:true,
+		skip_upload_screenshots:true,
+		apk:'./app/build/outputs/apk/release/app-release.apk',
+		rollout: $BUILD_NUMBER
+		)
   end
 
   desc "Submit a new Beta Build"
