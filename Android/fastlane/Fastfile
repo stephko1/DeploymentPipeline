@@ -29,6 +29,7 @@ platform :android do
       build_type: 'Release', 
       properties: {
         "VERSION_CODE" => build_number,
+        "ANDROID_SDK_ROOT" => "/var/lib/jenkins/tools",
         "android.injected.signing.store.file" => "keystore.jks",
         "android.injected.signing.store.password" => "X7CKBHA5wChxgWA0mwnz",
         "android.injected.signing.key.alias" => "key0",
