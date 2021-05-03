@@ -10,77 +10,72 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
 
 default_platform(:android)
 
 platform :android do
-  desc "Runs all tests"
-  lane :test do
-    gradle(task: 'clean')
-    gradle(task: 'test')
-  end
-  
-  desc 'Build the Android application.'
-   lane :build do
-    build_number=number_of_commits()
-    gradle(
-      task: 'assemble', 
-      build_type: 'Release', 
-      properties: {
-        "VERSION_CODE" => build_number,
-        "ANDROID_SDK_ROOT" => "/var/lib/jenkins/tools",
-        "android.injected.signing.store.file" => "/home/ec2-user/keystore.jks",
-        "android.injected.signing.store.password" => "X7CKBHA5wChxgWA0mwnz",
-        "android.injected.signing.key.alias" => "key0",
-        "android.injected.signing.key.password" => "GzT4Q1rtbWiJAgKfDOIE"
-        })
-   end
+	desc "Runs all tests"
+	lane :test do
+		gradle(task: 'clean')
+		gradle(task: 'test')
+	end
 
-  desc "Submit a new Internal Build"
-  lane :internal do
-    upload_to_play_store(
-		track: 'internal',
-		skip_upload_aab: true,
-		skip_upload_metadata:true,
-		skip_upload_changelogs:true,
-		skip_upload_images:true,
-		skip_upload_screenshots:true,
-		apk:'./app/build/outputs/apk/release/app-release.apk'
+	desc 'Build the Android application.'
+	lane :build do
+		gradle(
+			task: 'assemble', 
+			build_type: 'Release', 
+			properties: {
+				"VERSION_CODE" => $BUILD_NUMBER,
+				"ANDROID_SDK_ROOT" => "/var/lib/jenkins/tools",
+				"android.injected.signing.store.file" => "/home/ec2-user/keystore.jks",
+				"android.injected.signing.store.password" => "X7CKBHA5wChxgWA0mwnz",
+				"android.injected.signing.key.alias" => "key0",
+				"android.injected.signing.key.password" => "GzT4Q1rtbWiJAgKfDOIE"
+			}
 		)
-  end
-  
-  desc "Deploy to Alpha"
-  lane :alpha do
-	build_number=number_of_commits()
-        upload_to_play_store(
-		track: 'internal',
-		skip_upload_apk: true,	
-		track_promote_to: 'alpha',
-		version_code: $BUILD_NUMBER
-		)
-  end
+	end
 
-  desc "Deploy to Beta"
-  lane :beta do
-	build_number=number_of_commits()
-        upload_to_play_store(
-		track: 'alpha',
-		skip_upload_apk: true,	
-		track_promote_to: 'beta',
-		version_code: $BUILD_NUMBER
+	desc "Submit a new Internal Build"
+	lane :internal do
+		upload_to_play_store(
+			track: 'internal',
+			skip_upload_aab: true,
+			skip_upload_metadata:true,
+			skip_upload_changelogs:true,
+			skip_upload_images:true,
+			skip_upload_screenshots:true,
+			apk:'./app/build/outputs/apk/release/app-release.apk'
 		)
-  end
+	end
   
-  desc "Deploy to Store"
-  lane :production do
-	build_number=number_of_commits()
-        upload_to_play_store(
-		track: 'beta',
-		skip_upload_apk: true,	
-		track_promote_to: 'production',
-		version_code: $BUILD_NUMBER
+	desc "Deploy to Alpha"
+	lane :alpha do
+		upload_to_play_store(
+			track: 'internal',
+			skip_upload_apk: true,	
+			track_promote_to: 'alpha',
+			version_code: $BUILD_NUMBER
 		)
-  end
+	end
+
+	desc "Deploy to Beta"
+	lane :beta do
+		upload_to_play_store(
+			track: 'alpha',
+			skip_upload_apk: true,	
+			track_promote_to: 'beta',
+			version_code: $BUILD_NUMBER
+		)
+	end
+  
+	desc "Deploy to Store"
+	lane :production do
+        upload_to_play_store(
+			track: 'beta',
+			skip_upload_apk: true,	
+			track_promote_to: 'production',
+			version_code: $BUILD_NUMBER
+		)
+	end
 end

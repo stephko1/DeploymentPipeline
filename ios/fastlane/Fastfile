@@ -1,23 +1,31 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
-
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Build app"
+  lane :build do
+      setupCodeSigning('28051993', '28051993', '/Users/Stephan/Desktop/ios_development.mobileprovision', '/Users/Stephan/Desktop/ios_development.cer')
+
+      cocoapods(clean_install: true, use_bundle_exec: false, error_callback: true)
+
+      build_app(scheme: "Pipeline")
+
   end
+end
+
+
+def setupCodeSigning(keychainPassword, certificatePassword, profilePath, certificatePath)
+  create_keychain(
+    name: "CI",
+    password: keychainPassword,
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    lock_when_sleeps: false
+  )
+  install_provisioning_profile(path: profilePath)
+  import_certificate(
+    certificate_path: certificatePath,
+    certificate_password: certificatePassword,
+    keychain_name: "CI",
+    keychain_password: keychainPassword
+  )
 end

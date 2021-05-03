@@ -1,0 +1,6 @@
+framework module Pods_PipelineTests {
+  umbrella header "Pods-PipelineTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
